@@ -1,0 +1,53 @@
+[gd_scene load_steps=4 format=3 uid="uid://bxc82hg4i0gxw"]
+
+[ext_resource type="Texture2D" uid="uid://qwgjgk5m5rl1" path="res://assets/Art/buttons.png" id="1_5bdec"]
+[ext_resource type="Script" uid="uid://fohe20k1uy7m" path="res://scripts/upgrade_button.gd" id="1_whhmi"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_whhmi"]
+radius = 20.0
+height = 66.0
+
+[node name="UpgradeButton" type="Area2D"]
+collision_layer = 128
+script = ExtResource("1_whhmi")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+self_modulate = Color(1, 0, 0, 1)
+texture = ExtResource("1_5bdec")
+offset = Vector2(5, 0)
+hframes = 2
+region_enabled = true
+region_rect = Rect2(0, 11, 116, 33)
+region_filter_clip_enabled = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_whhmi")
+
+[node name="TextContainer" type="Node2D" parent="."]
+
+[node name="Description" type="RichTextLabel" parent="TextContainer"]
+unique_name_in_owner = true
+offset_left = -22.0
+offset_top = -13.0
+offset_right = 25.0
+offset_bottom = -6.0
+theme_override_font_sizes/normal_font_size = 5
+text = "PORTALS+"
+scroll_active = false
+horizontal_alignment = 1
+
+[node name="Price" type="RichTextLabel" parent="TextContainer"]
+unique_name_in_owner = true
+offset_left = -22.0
+offset_top = -5.0
+offset_right = 22.0
+offset_bottom = 9.0
+theme_override_colors/default_color = Color(1, 1, 0, 1)
+theme_override_font_sizes/normal_font_size = 9
+text = "123"
+scroll_active = false
+horizontal_alignment = 1
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="body_exited" from="." to="." method="_on_body_exited"]

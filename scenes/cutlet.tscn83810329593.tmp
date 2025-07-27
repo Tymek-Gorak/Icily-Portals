@@ -1,0 +1,37 @@
+[gd_scene load_steps=8 format=3 uid="uid://da3evvysmba11"]
+
+[ext_resource type="Script" uid="uid://sxf4o33blolo" path="res://scripts/cutlet.gd" id="1_j3cmp"]
+[ext_resource type="Texture2D" uid="uid://cjnq6weag7k4b" path="res://icon.svg" id="1_s3qj5"]
+[ext_resource type="PackedScene" uid="uid://c8j2xekbny1a3" path="res://scenes/prefabs/head_potion.tscn" id="2_1i3rk"]
+[ext_resource type="Texture2D" uid="uid://dviq6idav8wyp" path="res://assets/Cutlet_model.png" id="3_4ymhs"]
+[ext_resource type="PackedScene" uid="uid://dnbq6361ofrh7" path="res://scenes/prefabs/head_icecream.tscn" id="3_dq1g6"]
+[ext_resource type="PackedScene" uid="uid://ccqytxl06s67i" path="res://scenes/prefabs/thrown_potion.tscn" id="3_gso4m"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_776tf"]
+size = Vector2(18, 16)
+
+[node name="Cutlet" type="CharacterBody2D" node_paths=PackedStringArray("head_container")]
+collision_mask = 12
+motion_mode = 1
+script = ExtResource("1_j3cmp")
+POTION_RANGE = 275
+head_potion = ExtResource("2_1i3rk")
+head_icecream = ExtResource("3_dq1g6")
+thrown_potion = ExtResource("3_gso4m")
+head_container = NodePath("HeadContainer")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("3_4ymhs")
+hframes = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_776tf")
+
+[node name="HeadContainer" type="Node2D" parent="."]
+position = Vector2(0, -24)
+
+[node name="SplashZone" type="Sprite2D" parent="."]
+self_modulate = Color(1, 0.345098, 0.231373, 0.384314)
+position = Vector2(224, 9.53674e-07)
+scale = Vector2(0.109375, 0.109375)
+texture = ExtResource("1_s3qj5")

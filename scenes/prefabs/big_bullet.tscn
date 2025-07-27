@@ -1,0 +1,45 @@
+[gd_scene load_steps=8 format=3 uid="uid://cosuxo7pe4ltu"]
+
+[ext_resource type="PackedScene" uid="uid://ca1kln8f14y4p" path="res://scenes/prefabs/small_bullet.tscn" id="1_cu0on"]
+[ext_resource type="Texture2D" uid="uid://bljgjjugewmow" path="res://assets/Art/fireball.png" id="2_gyqi3"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5pwdh"]
+atlas = ExtResource("2_gyqi3")
+region = Rect2(0, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8daih"]
+atlas = ExtResource("2_gyqi3")
+region = Rect2(48, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bsrq1"]
+atlas = ExtResource("2_gyqi3")
+region = Rect2(96, 0, 48, 48)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_qlfpl"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5pwdh")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8daih")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bsrq1")
+}],
+"loop": true,
+"name": &"default",
+"speed": 10.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_gyqi3"]
+radius = 13.0
+
+[node name="BigBullet" instance=ExtResource("1_cu0on")]
+
+[node name="AnimatedSprite2D" parent="." index="0"]
+sprite_frames = SubResource("SpriteFrames_qlfpl")
+frame_progress = 0.948741
+
+[node name="CollisionShape2D" parent="." index="2"]
+shape = SubResource("CircleShape2D_gyqi3")

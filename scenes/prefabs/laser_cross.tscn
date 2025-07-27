@@ -1,0 +1,18 @@
+[gd_scene load_steps=3 format=3 uid="uid://cj0mhww2ikmkq"]
+
+[ext_resource type="Script" uid="uid://dlg1aye6v1afc" path="res://scripts/laser_cross.gd" id="1_8btty"]
+[ext_resource type="PackedScene" uid="uid://b5pkd1q5uawpg" path="res://scenes/prefabs/laser.tscn" id="1_y6kud"]
+
+[node name="LaserCross" type="Node2D"]
+script = ExtResource("1_8btty")
+
+[node name="Laser" parent="." instance=ExtResource("1_y6kud")]
+
+[node name="Laser2" parent="." instance=ExtResource("1_y6kud")]
+rotation = -1.5708
+
+[node name="Laser3" parent="." instance=ExtResource("1_y6kud")]
+rotation = -3.14159
+
+[node name="Laser4" parent="." instance=ExtResource("1_y6kud")]
+rotation = -4.71239

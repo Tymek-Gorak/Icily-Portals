@@ -1,0 +1,23 @@
+[gd_scene load_steps=4 format=3 uid="uid://djovqwiq6mry8"]
+
+[ext_resource type="Texture2D" uid="uid://bhrdv6codvf8o" path="res://assets/Art/Joystick.png" id="1_ib8g0"]
+[ext_resource type="Script" uid="uid://dsnu7umbxiyok" path="res://scenes/Menu/Scripts/joystick_movement.gd" id="2_jyhy5"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_t277f"]
+atlas = ExtResource("1_ib8g0")
+region = Rect2(30, 30, 132, 132)
+
+[node name="JoystickMovement" type="TouchScreenButton"]
+scale = Vector2(1.2, 1.2)
+texture_normal = SubResource("AtlasTexture_t277f")
+script = ExtResource("2_jyhy5")
+
+[node name="MovementPip" type="Sprite2D" parent="."]
+unique_name_in_owner = true
+position = Vector2(66, 66)
+texture = ExtResource("1_ib8g0")
+region_enabled = true
+region_rect = Rect2(262, 70, 52, 52)
+
+[connection signal="released" from="." to="." method="_on_released"]
+[connection signal="visibility_changed" from="." to="." method="_on_visibility_changed"]

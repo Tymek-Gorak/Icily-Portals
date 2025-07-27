@@ -1,0 +1,11 @@
+[gd_scene load_steps=2 format=3 uid="uid://cwgv1e13nf1nu"]
+
+[ext_resource type="Script" uid="uid://ctqr7f2t3fxqo" path="res://scripts/portal_spawn_area.gd" id="1_l6in3"]
+
+[node name="PortalSpawnArea" type="Marker2D"]
+script = ExtResource("1_l6in3")
+
+[node name="PortalSpawnTimer" type="Timer" parent="."]
+wait_time = 9.0
+
+[connection signal="timeout" from="PortalSpawnTimer" to="." method="_on_portal_spawn_timer_timeout"]

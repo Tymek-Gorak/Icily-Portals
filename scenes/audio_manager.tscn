@@ -1,0 +1,243 @@
+[gd_scene load_steps=39 format=3 uid="uid://balpsjv1vwpow"]
+
+[ext_resource type="Script" uid="uid://cnq4ey5p7xj5n" path="res://scripts/audio_manager.gd" id="1_6tbik"]
+[ext_resource type="AudioStream" uid="uid://ca0cokst8epov" path="res://assets/Materials/Music/SFX/clock.mp3" id="2_3llsa"]
+[ext_resource type="Script" uid="uid://cn5nxf5b4irin" path="res://scripts/Resources/AudioResource.gd" id="2_4c52k"]
+[ext_resource type="AudioStream" uid="uid://ba00fiaatc8np" path="res://assets/Materials/Music/main_music_loop.mp3" id="2_bry1v"]
+[ext_resource type="AudioStream" uid="uid://deaxalqh3sukl" path="res://assets/Materials/Music/SFX/fire_bullet.wav" id="2_mdhmt"]
+[ext_resource type="AudioStream" uid="uid://dpd6vopyli2qn" path="res://assets/Materials/Music/main_music_start.mp3" id="3_3llsa"]
+[ext_resource type="AudioStream" uid="uid://cp52qoa11150e" path="res://assets/Materials/Music/SFX/eksplozja.mp3" id="3_86r5t"]
+[ext_resource type="AudioStream" uid="uid://bb60tqc38wsmw" path="res://assets/Materials/Music/menu_music.mp3" id="3_bry1v"]
+[ext_resource type="AudioStream" uid="uid://d352a1pmjyl8h" path="res://assets/Materials/Music/SFX/fire_laser.mp3" id="3_kinut"]
+[ext_resource type="AudioStream" uid="uid://dmv7ixvwd703t" path="res://assets/Materials/Music/SFX/game_end.wav" id="4_bry1v"]
+[ext_resource type="AudioStream" uid="uid://7so3wvdfl3ki" path="res://assets/Materials/Music/SFX/ice_cream_make.mp3" id="5_3llsa"]
+[ext_resource type="AudioStream" uid="uid://b7f1d32sem1j2" path="res://assets/Materials/Music/SFX/pick_up.mp3" id="6_86r5t"]
+[ext_resource type="AudioStream" uid="uid://c204t3d5kau0n" path="res://assets/Materials/Music/SFX/portal_spawn.wav" id="7_iakwd"]
+[ext_resource type="AudioStream" uid="uid://c4eably7jdbgf" path="res://assets/Materials/Music/SFX/potion_spawn.wav" id="8_ewr6u"]
+[ext_resource type="AudioStream" uid="uid://cce4ry0y4fxhg" path="res://assets/Materials/Music/SFX/sell.wav" id="9_4npwq"]
+[ext_resource type="AudioStream" uid="uid://b7uiitu2lyo1n" path="res://assets/Materials/Music/SFX/throw.wav" id="11_a4uyd"]
+[ext_resource type="AudioStream" uid="uid://vpgnxtg2xrkt" path="res://assets/Materials/Music/SFX/upgrade_fail.wav" id="12_insrm"]
+[ext_resource type="AudioStream" uid="uid://c8otj7kpb54on" path="res://assets/Materials/Music/SFX/upgrade_success.mp3" id="13_cwoyp"]
+[ext_resource type="AudioStream" uid="uid://c8rnklt0vnape" path="res://assets/Materials/Music/SFX/walk.wav" id="14_mbt8y"]
+[ext_resource type="AudioStream" uid="uid://d1gomepl4o1ad" path="res://assets/Materials/Music/SFX/dmg_taken.ogg" id="15_80dqa"]
+
+[sub_resource type="Resource" id="Resource_vfv8a"]
+script = ExtResource("2_4c52k")
+type = 0
+limit = 1.0
+audio = ExtResource("2_3llsa")
+volume = 0.0
+pitch_scale = 0.88
+pitch_randomness = 0.1
+is_ost = true
+ost_loop = 0
+metadata/_custom_type_script = "uid://cn5nxf5b4irin"
+
+[sub_resource type="Resource" id="Resource_v0hdg"]
+script = ExtResource("2_4c52k")
+type = 1
+limit = 5.0
+audio = ExtResource("3_86r5t")
+volume = -14.195
+pitch_scale = 1.0
+pitch_randomness = 0.1
+is_ost = false
+ost_loop = 0
+metadata/_custom_type_script = "uid://cn5nxf5b4irin"
+
+[sub_resource type="Resource" id="Resource_fnmo8"]
+script = ExtResource("2_4c52k")
+type = 2
+limit = 1.0
+audio = ExtResource("3_3llsa")
+volume = -25.171
+pitch_scale = 0.86
+pitch_randomness = 0.0
+is_ost = true
+ost_loop = 3
+metadata/_custom_type_script = "uid://cn5nxf5b4irin"
+
+[sub_resource type="Resource" id="Resource_hbfeh"]
+script = ExtResource("2_4c52k")
+type = 3
+limit = 1.0
+audio = ExtResource("2_bry1v")
+volume = -26.634
+pitch_scale = 0.86
+pitch_randomness = 0.0
+is_ost = true
+ost_loop = 3
+metadata/_custom_type_script = "uid://cn5nxf5b4irin"
+
+[sub_resource type="Resource" id="Resource_mxgfu"]
+script = ExtResource("2_4c52k")
+type = 4
+limit = 1.0
+audio = ExtResource("3_bry1v")
+volume = -9.805
+pitch_scale = 1.0
+pitch_randomness = 0.0
+is_ost = true
+ost_loop = 4
+metadata/_custom_type_script = "uid://cn5nxf5b4irin"
+
+[sub_resource type="Resource" id="Resource_th1mx"]
+script = ExtResource("2_4c52k")
+type = 5
+limit = 5.0
+audio = ExtResource("2_mdhmt")
+volume = -17.414
+pitch_scale = 1.06
+pitch_randomness = 0.1
+is_ost = false
+ost_loop = 0
+metadata/_custom_type_script = "uid://cn5nxf5b4irin"
+
+[sub_resource type="Resource" id="Resource_dsa06"]
+script = ExtResource("2_4c52k")
+type = 6
+limit = 5.0
+audio = ExtResource("3_kinut")
+volume = -16.683
+pitch_scale = 1.35
+pitch_randomness = 0.1
+is_ost = false
+ost_loop = 0
+metadata/_custom_type_script = "uid://cn5nxf5b4irin"
+
+[sub_resource type="Resource" id="Resource_1rntm"]
+script = ExtResource("2_4c52k")
+type = 7
+limit = 1.0
+audio = ExtResource("4_bry1v")
+volume = -12.732
+pitch_scale = 1.0
+pitch_randomness = 0.1
+is_ost = false
+ost_loop = 0
+metadata/_custom_type_script = "uid://cn5nxf5b4irin"
+
+[sub_resource type="Resource" id="Resource_kg72q"]
+script = ExtResource("2_4c52k")
+type = 10
+limit = 5.0
+audio = ExtResource("5_3llsa")
+volume = -24.439
+pitch_scale = 0.86
+pitch_randomness = 0.1
+is_ost = false
+ost_loop = 0
+metadata/_custom_type_script = "uid://cn5nxf5b4irin"
+
+[sub_resource type="Resource" id="Resource_cgi4u"]
+script = ExtResource("2_4c52k")
+type = 11
+limit = 5.0
+audio = ExtResource("6_86r5t")
+volume = -11.268
+pitch_scale = 1.0
+pitch_randomness = 0.1
+is_ost = false
+ost_loop = 0
+metadata/_custom_type_script = "uid://cn5nxf5b4irin"
+
+[sub_resource type="Resource" id="Resource_svwe3"]
+script = ExtResource("2_4c52k")
+type = 8
+limit = 5.0
+audio = ExtResource("7_iakwd")
+volume = -12.0
+pitch_scale = 1.0
+pitch_randomness = 0.1
+is_ost = false
+ost_loop = 0
+metadata/_custom_type_script = "uid://cn5nxf5b4irin"
+
+[sub_resource type="Resource" id="Resource_mrtlj"]
+script = ExtResource("2_4c52k")
+type = 9
+limit = 5.0
+audio = ExtResource("8_ewr6u")
+volume = -14.927
+pitch_scale = 0.86
+pitch_randomness = 0.1
+is_ost = false
+ost_loop = 0
+metadata/_custom_type_script = "uid://cn5nxf5b4irin"
+
+[sub_resource type="Resource" id="Resource_6tbik"]
+script = ExtResource("2_4c52k")
+type = 12
+limit = 5.0
+audio = ExtResource("9_4npwq")
+volume = -17.0
+pitch_scale = 0.95
+pitch_randomness = 0.1
+is_ost = false
+ost_loop = 0
+metadata/_custom_type_script = "uid://cn5nxf5b4irin"
+
+[sub_resource type="Resource" id="Resource_mdhmt"]
+script = ExtResource("2_4c52k")
+type = 13
+limit = 8.0
+audio = ExtResource("11_a4uyd")
+volume = -12.0
+pitch_scale = 1.0
+pitch_randomness = 0.1
+is_ost = false
+ost_loop = 0
+metadata/_custom_type_script = "uid://cn5nxf5b4irin"
+
+[sub_resource type="Resource" id="Resource_kinut"]
+script = ExtResource("2_4c52k")
+type = 15
+limit = 5.0
+audio = ExtResource("12_insrm")
+volume = -15.785
+pitch_scale = 0.38
+pitch_randomness = 0.08
+is_ost = false
+ost_loop = 0
+metadata/_custom_type_script = "uid://cn5nxf5b4irin"
+
+[sub_resource type="Resource" id="Resource_bry1v"]
+script = ExtResource("2_4c52k")
+type = 14
+limit = 5.0
+audio = ExtResource("13_cwoyp")
+volume = -3.31
+pitch_scale = 2.81
+pitch_randomness = 0.1
+is_ost = false
+ost_loop = 0
+metadata/_custom_type_script = "uid://cn5nxf5b4irin"
+
+[sub_resource type="Resource" id="Resource_3llsa"]
+script = ExtResource("2_4c52k")
+type = 16
+limit = 1.0
+audio = ExtResource("14_mbt8y")
+volume = -9.073
+pitch_scale = 0.96
+pitch_randomness = 0.07
+is_ost = true
+ost_loop = 16
+metadata/_custom_type_script = "uid://cn5nxf5b4irin"
+
+[sub_resource type="Resource" id="Resource_86r5t"]
+script = ExtResource("2_4c52k")
+type = 17
+limit = 5.0
+audio = ExtResource("15_80dqa")
+volume = -12.732
+pitch_scale = 1.0
+pitch_randomness = 0.1
+is_ost = false
+ost_loop = 0
+metadata/_custom_type_script = "uid://cn5nxf5b4irin"
+
+[node name="AudioManager" type="Node2D"]
+process_mode = 3
+script = ExtResource("1_6tbik")
+all_audios = Array[ExtResource("2_4c52k")]([SubResource("Resource_vfv8a"), SubResource("Resource_v0hdg"), SubResource("Resource_fnmo8"), SubResource("Resource_hbfeh"), SubResource("Resource_mxgfu"), SubResource("Resource_th1mx"), SubResource("Resource_dsa06"), SubResource("Resource_1rntm"), SubResource("Resource_kg72q"), SubResource("Resource_cgi4u"), SubResource("Resource_svwe3"), SubResource("Resource_mrtlj"), SubResource("Resource_6tbik"), SubResource("Resource_mdhmt"), SubResource("Resource_kinut"), SubResource("Resource_bry1v"), SubResource("Resource_3llsa"), SubResource("Resource_86r5t")])

@@ -1,0 +1,39 @@
+[gd_scene load_steps=7 format=3 uid="uid://ccqytxl06s67i"]
+
+[ext_resource type="Script" uid="uid://c8qenjgpi1kyt" path="res://scripts/thrown_potion.gd" id="1_cr21p"]
+[ext_resource type="Texture2D" uid="uid://cjnq6weag7k4b" path="res://icon.svg" id="1_x5obh"]
+[ext_resource type="PackedScene" uid="uid://d0oa6vsx6l6ak" path="res://scenes/prefabs/potion_explosion.tscn" id="2_0c1ux"]
+[ext_resource type="Curve" uid="uid://cm8jbsqcc3g45" path="res://assets/Materials/throw_curve.tres" id="2_p3wwl"]
+[ext_resource type="Texture2D" uid="uid://dmymlu5k417vt" path="res://assets/Art/Spike_shell.png" id="5_6wubk"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_x5obh"]
+radius = 5.0
+
+[node name="ThrownPotion" type="CharacterBody2D"]
+z_index = 10
+collision_layer = 0
+collision_mask = 4
+script = ExtResource("1_cr21p")
+speed = 250
+height_curve = ExtResource("2_p3wwl")
+potion_explosion = ExtResource("2_0c1ux")
+
+[node name="ShadowSprite" type="Sprite2D" parent="."]
+self_modulate = Color(0.132145, 0.277707, 0.310413, 0.541176)
+position = Vector2(0, 13)
+scale = Vector2(0.25, 0.03125)
+texture = ExtResource("1_x5obh")
+
+[node name="PotionSprite" type="Sprite2D" parent="."]
+texture = ExtResource("5_6wubk")
+hframes = 10
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_x5obh")
+
+[node name="LifeTimeTimer" type="Timer" parent="."]
+wait_time = 0.7
+one_shot = true
+autostart = true
+
+[connection signal="timeout" from="LifeTimeTimer" to="." method="_on_life_time_timer_timeout"]

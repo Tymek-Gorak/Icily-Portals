@@ -1,0 +1,13 @@
+[gd_scene load_steps=4 format=3 uid="uid://c8j2xekbny1a3"]
+
+[ext_resource type="Texture2D" uid="uid://dmymlu5k417vt" path="res://assets/Art/Spike_shell.png" id="1_04y23"]
+[ext_resource type="Script" uid="uid://b41dwkywocrg7" path="res://scripts/head_potion.gd" id="1_414wr"]
+[ext_resource type="Curve" uid="uid://cufbblf0k330n" path="res://assets/Materials/drop_item_curve.tres" id="3_04y23"]
+
+[node name="HeadPotion" type="Sprite2D"]
+process_mode = 4
+position = Vector2(-4.76837e-07, -4.76837e-07)
+texture = ExtResource("1_04y23")
+hframes = 10
+script = ExtResource("1_414wr")
+drop_curve = ExtResource("3_04y23")

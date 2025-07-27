@@ -1,0 +1,38 @@
+[gd_scene load_steps=4 format=3 uid="uid://c8d0amjrv0ott"]
+
+[ext_resource type="Texture2D" uid="uid://cjnq6weag7k4b" path="res://icon.svg" id="1_ysju7"]
+[ext_resource type="Script" uid="uid://un06l2nbd2lt" path="res://scenes/Menu/Scripts/money_display.gd" id="2_kk7dr"]
+[ext_resource type="Texture2D" uid="uid://jk3p542fxua0" path="res://assets/Art/Monay.png" id="3_heuue"]
+
+[node name="MoneyDisplay" type="NinePatchRect"]
+anchors_preset = -1
+anchor_left = 0.236
+anchor_top = 0.063
+anchor_right = 0.236
+anchor_bottom = 0.063
+offset_left = -226.56
+offset_top = -34.02
+offset_right = 0.439987
+offset_bottom = -0.0200005
+texture = ExtResource("1_ysju7")
+draw_center = false
+patch_margin_left = 17
+patch_margin_top = 17
+patch_margin_right = 17
+patch_margin_bottom = 17
+script = ExtResource("2_kk7dr")
+
+[node name="MoneyCountText" type="RichTextLabel" parent="."]
+layout_mode = 0
+offset_left = 44.0
+offset_top = 5.0
+offset_right = 267.0
+offset_bottom = 31.0
+theme_override_colors/default_color = Color(0.99626, 0.994092, 0, 1)
+text = "0"
+scroll_active = false
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(26, 17)
+scale = Vector2(1.5, 1.5)
+texture = ExtResource("3_heuue")

@@ -1,0 +1,142 @@
+[gd_scene load_steps=16 format=3 uid="uid://c5j7j1q2nldc1"]
+
+[ext_resource type="PackedScene" uid="uid://da3evvysmba11" path="res://scenes/cutlet.tscn" id="1_7ubgg"]
+[ext_resource type="PackedScene" uid="uid://b83fayupakw03" path="res://scenes/prefabs/potion.tscn" id="2_8cmw5"]
+[ext_resource type="PackedScene" uid="uid://ch0k2yfjs71ix" path="res://scenes/counter.tscn" id="5_g210m"]
+[ext_resource type="PackedScene" uid="uid://dgmifnnsctimy" path="res://scenes/prefabs/factory_buy.tscn" id="5_uq68o"]
+[ext_resource type="PackedScene" uid="uid://cwgv1e13nf1nu" path="res://scenes/prefabs/portal_spawn_area.tscn" id="6_0jm75"]
+[ext_resource type="PackedScene" uid="uid://l30jx501ehoa" path="res://scenes/Menu/UI.tscn" id="6_07am2"]
+[ext_resource type="Script" uid="uid://neo2dv6y8b36" path="res://scripts/Resources/upgrade_dmg.gd" id="6_bjkvw"]
+[ext_resource type="Script" uid="uid://cj2kpp0gdjjry" path="res://scripts/on_start_enable.gd" id="6_rko33"]
+[ext_resource type="PackedScene" uid="uid://bxc82hg4i0gxw" path="res://scenes/prefabs/upgrade_button.tscn" id="7_0jm75"]
+[ext_resource type="Script" uid="uid://c73ox4rm40fnu" path="res://scripts/Resources/upgrade_portals.gd" id="8_1dne3"]
+[ext_resource type="Script" uid="uid://2odxxaqxl0cp" path="res://scripts/Resources/upgrade_holding.gd" id="8_ew6bg"]
+[ext_resource type="PackedScene" uid="uid://cp2hewo4t6pvb" path="res://scenes/prefabs/portal_bigshot.tscn" id="9_uq68o"]
+[ext_resource type="Script" uid="uid://dw4ngb11xe7vo" path="res://scripts/Resources/upgrade_splash_zone.gd" id="11_m2l5x"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_8cmw5"]
+size = Vector2(1176, 20)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_g210m"]
+size = Vector2(630, 20)
+
+[node name="IcecreamShop" type="Node2D"]
+position = Vector2(2, -791)
+
+[node name="Cutlet" parent="." instance=ExtResource("1_7ubgg")]
+position = Vector2(274, 167)
+
+[node name="walls" type="StaticBody2D" parent="."]
+collision_layer = 4
+collision_mask = 0
+collision_priority = 20.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="walls"]
+position = Vector2(573, 3)
+shape = SubResource("RectangleShape2D_8cmw5")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="walls"]
+position = Vector2(530, 545)
+shape = SubResource("RectangleShape2D_8cmw5")
+
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="walls"]
+position = Vector2(-10, 286)
+rotation = 1.5708
+shape = SubResource("RectangleShape2D_g210m")
+
+[node name="CollisionShape2D4" type="CollisionShape2D" parent="walls"]
+position = Vector2(960, 268)
+rotation = 1.5708
+shape = SubResource("RectangleShape2D_g210m")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(474, 272)
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="UI" parent="CanvasLayer" instance=ExtResource("6_07am2")]
+offset_top = -1.0
+offset_bottom = -1.0
+
+[node name="PortalSpawnArea" parent="." instance=ExtResource("6_0jm75")]
+position = Vector2(11, 97)
+
+[node name="Marker2D" type="Marker2D" parent="PortalSpawnArea"]
+position = Vector2(931, 340)
+
+[node name="UpgradePortals" parent="." node_paths=PackedStringArray("upgrade_function") instance=ExtResource("7_0jm75")]
+position = Vector2(95, 54)
+prices = Array[int]([100, 150, 200])
+descriptions = Array[String](["Portals+", "Portals++", "Portals+++"])
+upgrade_function = NodePath("UpgradePortals")
+tiers = 3
+
+[node name="UpgradePortals" type="Node" parent="UpgradePortals"]
+script = ExtResource("8_1dne3")
+big_portal_odds = Array[int]([65, 40, 45])
+small_portal_odds = Array[int]([35, 25, 25])
+laser_portal_odds = Array[int]([0, 35, 30])
+portal_spawn_rate = Array[float]([4.5, 4.0, 3.1])
+metadata/_custom_type_script = "uid://c73ox4rm40fnu"
+
+[node name="UpgradeDMG" parent="." node_paths=PackedStringArray("upgrade_function") instance=ExtResource("7_0jm75")]
+position = Vector2(295, 474)
+prices = Array[int]([200, 400])
+descriptions = Array[String](["DMG+", "DMG++"])
+upgrade_function = NodePath("UpgradePotionDMG")
+tiers = 2
+
+[node name="UpgradePotionDMG" type="Node" parent="UpgradeDMG"]
+script = ExtResource("6_bjkvw")
+metadata/_custom_type_script = "uid://neo2dv6y8b36"
+
+[node name="SplashZoneUpgrade" parent="." node_paths=PackedStringArray("upgrade_function") instance=ExtResource("7_0jm75")]
+position = Vector2(660, 478)
+prices = Array[int]([100, 350])
+descriptions = Array[String](["Splash+", "Splash++"])
+upgrade_function = NodePath("UpgradeSplashZone")
+tiers = 2
+
+[node name="UpgradeSplashZone" type="Node" parent="SplashZoneUpgrade"]
+script = ExtResource("11_m2l5x")
+metadata/_custom_type_script = "uid://dw4ngb11xe7vo"
+
+[node name="UpgradeHolding" parent="." node_paths=PackedStringArray("upgrade_function") instance=ExtResource("7_0jm75")]
+position = Vector2(486, 476)
+prices = Array[int]([150, 150, 200])
+descriptions = Array[String](["Carrying+", "Carrying++", "Carrying+++"])
+upgrade_function = NodePath("UpgradeHolding")
+tiers = 3
+
+[node name="UpgradeHolding" type="Node" parent="UpgradeHolding"]
+script = ExtResource("8_ew6bg")
+holding_levels = Array[int]([5, 9, 15])
+metadata/_custom_type_script = "uid://2odxxaqxl0cp"
+
+[node name="FactoryBuy" parent="." instance=ExtResource("5_uq68o")]
+position = Vector2(96, 474)
+prices = Array[int]([50])
+
+[node name="FactoryBuy2" parent="." instance=ExtResource("5_uq68o")]
+position = Vector2(870, 482)
+prices = Array[int]([20])
+
+[node name="Counter" parent="." instance=ExtResource("5_g210m")]
+position = Vector2(506, 5)
+
+[node name="Potion" parent="." instance=ExtResource("2_8cmw5")]
+position = Vector2(170, 264)
+
+[node name="Potion2" parent="." instance=ExtResource("2_8cmw5")]
+position = Vector2(487, 388)
+
+[node name="Potion3" parent="." instance=ExtResource("2_8cmw5")]
+position = Vector2(763, 274)
+
+[node name="PortalBigshot" parent="." instance=ExtResource("9_uq68o")]
+position = Vector2(472, 273)
+
+[node name="OnStartEnable" type="Node" parent="." node_paths=PackedStringArray("game_start_nodes")]
+script = ExtResource("6_rko33")
+game_start_nodes = [NodePath("../FactoryBuy"), NodePath("../UpgradeHolding"), NodePath("../SplashZoneUpgrade"), NodePath("../UpgradeDMG"), NodePath("../UpgradePortals")]
+metadata/_custom_type_script = "uid://cj2kpp0gdjjry"

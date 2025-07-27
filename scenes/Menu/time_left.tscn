@@ -1,0 +1,41 @@
+[gd_scene load_steps=3 format=3 uid="uid://dcxgcxv02bnkl"]
+
+[ext_resource type="Texture2D" uid="uid://cjnq6weag7k4b" path="res://icon.svg" id="1_ov0xq"]
+[ext_resource type="Script" uid="uid://cr4yti7h3u6nu" path="res://scenes/Menu/Scripts/time_left.gd" id="2_5xsdi"]
+
+[node name="TimeLeft" type="NinePatchRect"]
+anchors_preset = -1
+anchor_right = 0.106
+offset_right = 121.24
+offset_bottom = 34.0
+texture = ExtResource("1_ov0xq")
+patch_margin_left = 17
+patch_margin_top = 17
+patch_margin_right = 17
+patch_margin_bottom = 17
+script = ExtResource("2_5xsdi")
+
+[node name="TimerText" type="RichTextLabel" parent="."]
+self_modulate = Color(0.533333, 1, 1, 1)
+layout_mode = 1
+anchors_preset = -1
+offset_left = 132.0
+offset_top = 5.0
+offset_right = 220.0
+offset_bottom = 30.0
+text = "SUSSY"
+scroll_active = false
+horizontal_alignment = 1
+
+[node name="CountingSeconds" type="Timer" parent="."]
+
+[node name="RichTextLabel" type="RichTextLabel" parent="."]
+layout_mode = 0
+offset_left = 11.0
+offset_top = 5.0
+offset_right = 164.0
+offset_bottom = 45.0
+text = "OPEN FOR:"
+scroll_active = false
+
+[connection signal="timeout" from="CountingSeconds" to="." method="_on_counting_seconds_timeout"]

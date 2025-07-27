@@ -1,0 +1,38 @@
+[gd_scene load_steps=4 format=3 uid="uid://l30jx501ehoa"]
+
+[ext_resource type="PackedScene" uid="uid://c8d0amjrv0ott" path="res://scenes/Menu/money_display.tscn" id="1_bnjpi"]
+[ext_resource type="PackedScene" uid="uid://dcxgcxv02bnkl" path="res://scenes/Menu/time_left.tscn" id="2_dhghb"]
+[ext_resource type="PackedScene" uid="uid://bpj5tre788qmj" path="res://scenes/Menu/game_over_screen.tscn" id="3_bgh8b"]
+
+[node name="UI" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MoneyDisplay" parent="." instance=ExtResource("1_bnjpi")]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_top = 0.0
+anchor_right = 1.0
+anchor_bottom = 0.0
+offset_left = -234.0
+offset_top = 8.0
+offset_right = -7.0
+offset_bottom = 42.0
+grow_horizontal = 0
+
+[node name="TimeLeft" parent="." instance=ExtResource("2_dhghb")]
+layout_mode = 1
+offset_left = 20.0
+offset_top = 9.0
+offset_right = 138.24
+offset_bottom = 43.0
+
+[node name="NinePatchRect" parent="." instance=ExtResource("3_bgh8b")]
+layout_mode = 1
+offset_left = -111.0
+offset_right = 103.0

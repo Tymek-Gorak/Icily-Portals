@@ -1,0 +1,17 @@
+[gd_scene load_steps=4 format=3 uid="uid://c1qgeuildlwb"]
+
+[ext_resource type="PackedScene" uid="uid://b3yvfljajlvi1" path="res://scenes/prefabs/portal_base.tscn" id="1_u2ebq"]
+[ext_resource type="Script" uid="uid://b00epxj2nv3pv" path="res://scripts/portal_laser.gd" id="2_6ry6c"]
+[ext_resource type="PackedScene" uid="uid://cj0mhww2ikmkq" path="res://scenes/prefabs/laser_cross.tscn" id="3_cbuv7"]
+
+[node name="PortalLaser" instance=ExtResource("1_u2ebq")]
+script = ExtResource("2_6ry6c")
+bullet = ExtResource("3_cbuv7")
+bullet_speed = 0
+icecreams_to_spawn = 6
+cooldown = 5
+cooldown_range = 1.5
+hp = 5
+
+[node name="Sprite2D" parent="." index="0"]
+self_modulate = Color(0.741176, 0.0431373, 0.34902, 1)

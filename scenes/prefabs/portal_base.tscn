@@ -1,0 +1,124 @@
+[gd_scene load_steps=13 format=3 uid="uid://b3yvfljajlvi1"]
+
+[ext_resource type="Script" uid="uid://hsktb4k7guae" path="res://scripts/portal_base.gd" id="1_qu13h"]
+[ext_resource type="Texture2D" uid="uid://b6mdylmhtgtlm" path="res://assets/Art/snow_particle.png" id="2_0ev8y"]
+[ext_resource type="PackedScene" uid="uid://ca1kln8f14y4p" path="res://scenes/prefabs/small_bullet.tscn" id="2_ib23a"]
+[ext_resource type="Texture2D" uid="uid://di0v6t46e4b74" path="res://assets/Art/portal.png" id="3_ib23a"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_qoxxa"]
+radius = 21.0
+height = 56.0
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_i3pto"]
+particles_animation = true
+particles_anim_h_frames = 3
+particles_anim_v_frames = 1
+particles_anim_loop = false
+
+[sub_resource type="Curve" id="Curve_i3pto"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.559055, 0.967079), 0.0, 0.0, 0, 0, Vector2(1, 0.576132), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="Gradient" id="Gradient_i3pto"]
+offsets = PackedFloat32Array(0, 0.717391, 1)
+colors = PackedColorArray(1, 1, 1, 1, 0, 1, 1, 1, 0.203922, 1, 1, 0)
+
+[sub_resource type="Gradient" id="Gradient_0ev8y"]
+colors = PackedColorArray(0.0235294, 1, 1, 0.458824, 0.93821, 0.93821, 0.93821, 1)
+
+[sub_resource type="Animation" id="Animation_11jmt"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="Animation" id="Animation_ib23a"]
+resource_name = "swirl"
+length = 0.6
+loop_mode = 1
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3, 4, 5]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_veu7c"]
+_data = {
+&"RESET": SubResource("Animation_11jmt"),
+&"swirl": SubResource("Animation_ib23a")
+}
+
+[node name="PortalBase" type="Area2D" groups=["Portals"]]
+collision_layer = 16
+collision_mask = 32
+script = ExtResource("1_qu13h")
+bullet = ExtResource("2_ib23a")
+icecreams_to_spawn = 4
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+self_modulate = Color(1, 0.482353, 0, 1)
+texture = ExtResource("3_ib23a")
+hframes = 6
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_qoxxa")
+
+[node name="IceyParticles" type="CPUParticles2D" parent="."]
+material = SubResource("CanvasItemMaterial_i3pto")
+emitting = false
+amount = 16
+texture = ExtResource("2_0ev8y")
+lifetime = 1.4
+one_shot = true
+explosiveness = 0.88
+randomness = 0.25
+lifetime_randomness = 0.15
+emission_shape = 1
+emission_sphere_radius = 6.52
+spread = 180.0
+gravity = Vector2(0, 0)
+initial_velocity_min = 49.77
+initial_velocity_max = 100.62
+angular_velocity_min = 122.03
+angular_velocity_max = 683.39
+scale_amount_min = 2.0
+scale_amount_max = 3.0
+scale_amount_curve = SubResource("Curve_i3pto")
+color = Color(0.12549, 1, 1, 1)
+color_ramp = SubResource("Gradient_i3pto")
+color_initial_ramp = SubResource("Gradient_0ev8y")
+anim_speed_min = 0.4
+anim_speed_max = 1.0
+
+[node name="FireCooldown" type="Timer" parent="."]
+wait_time = 3.0
+autostart = true
+
+[node name="IcecreamSpawnTimer" type="Timer" parent="."]
+wait_time = 0.3
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_veu7c")
+}
+
+[connection signal="timeout" from="FireCooldown" to="." method="_on_fire_cooldown_timeout"]
+[connection signal="timeout" from="IcecreamSpawnTimer" to="." method="_on_icecream_spawn_timer_timeout"]

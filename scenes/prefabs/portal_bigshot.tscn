@@ -1,0 +1,17 @@
+[gd_scene load_steps=4 format=3 uid="uid://cp2hewo4t6pvb"]
+
+[ext_resource type="PackedScene" uid="uid://b3yvfljajlvi1" path="res://scenes/prefabs/portal_base.tscn" id="1_sk3vj"]
+[ext_resource type="Script" uid="uid://di5n6o4mejegg" path="res://scripts/portal_bigshot.gd" id="2_gbpqm"]
+[ext_resource type="PackedScene" uid="uid://cosuxo7pe4ltu" path="res://scenes/prefabs/big_bullet.tscn" id="3_gbafj"]
+
+[node name="PortalBigshot" instance=ExtResource("1_sk3vj")]
+script = ExtResource("2_gbpqm")
+bullet = ExtResource("3_gbafj")
+bullet_speed = 100
+icecreams_to_spawn = 2
+cooldown = 2
+cooldown_range = 0.5
+hp = 2
+
+[node name="Sprite2D" parent="." index="0"]
+self_modulate = Color(0.440543, 0.116777, 0.715648, 1)

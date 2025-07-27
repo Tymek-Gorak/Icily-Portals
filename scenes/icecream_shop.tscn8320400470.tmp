@@ -1,0 +1,227 @@
+[gd_scene load_steps=21 format=3 uid="uid://c5j7j1q2nldc1"]
+
+[ext_resource type="PackedScene" uid="uid://da3evvysmba11" path="res://scenes/cutlet.tscn" id="1_7ubgg"]
+[ext_resource type="PackedScene" uid="uid://b83fayupakw03" path="res://scenes/prefabs/potion.tscn" id="2_8cmw5"]
+[ext_resource type="Texture2D" uid="uid://bstdwumwtlnr7" path="res://assets/Art/grass.png" id="2_b38ym"]
+[ext_resource type="PackedScene" uid="uid://bexao40mnhs1w" path="res://scenes/Menu/mobile_controls.tscn" id="2_gatyx"]
+[ext_resource type="PackedScene" uid="uid://bsqhojae3oh41" path="res://scenes/Menu/pause_menu.tscn" id="3_75eul"]
+[ext_resource type="PackedScene" uid="uid://ch0k2yfjs71ix" path="res://scenes/counter.tscn" id="5_g210m"]
+[ext_resource type="PackedScene" uid="uid://dgmifnnsctimy" path="res://scenes/prefabs/factory_buy.tscn" id="5_uq68o"]
+[ext_resource type="PackedScene" uid="uid://cwgv1e13nf1nu" path="res://scenes/prefabs/portal_spawn_area.tscn" id="6_0jm75"]
+[ext_resource type="PackedScene" uid="uid://l30jx501ehoa" path="res://scenes/Menu/UI.tscn" id="6_07am2"]
+[ext_resource type="Script" uid="uid://neo2dv6y8b36" path="res://scripts/Resources/upgrade_dmg.gd" id="6_bjkvw"]
+[ext_resource type="Script" uid="uid://cj2kpp0gdjjry" path="res://scripts/on_start_enable.gd" id="6_rko33"]
+[ext_resource type="PackedScene" uid="uid://bxc82hg4i0gxw" path="res://scenes/prefabs/upgrade_button.tscn" id="7_0jm75"]
+[ext_resource type="Script" uid="uid://c73ox4rm40fnu" path="res://scripts/Resources/upgrade_portals.gd" id="8_1dne3"]
+[ext_resource type="Script" uid="uid://2odxxaqxl0cp" path="res://scripts/Resources/upgrade_holding.gd" id="8_ew6bg"]
+[ext_resource type="PackedScene" uid="uid://cp2hewo4t6pvb" path="res://scenes/prefabs/portal_bigshot.tscn" id="9_uq68o"]
+[ext_resource type="Script" uid="uid://dw4ngb11xe7vo" path="res://scripts/Resources/upgrade_splash_zone.gd" id="11_m2l5x"]
+[ext_resource type="Texture2D" uid="uid://7jlmaw84cegx" path="res://assets/Art/trees.png" id="15_gatyx"]
+
+[sub_resource type="GDScript" id="GDScript_b38ym"]
+script/source = "extends Control
+
+func _ready():
+	GameManager.connect(\"start_game\", queue_free)
+"
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_8cmw5"]
+size = Vector2(1176, 20)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_g210m"]
+size = Vector2(630, 20)
+
+[node name="IcecreamShop" type="Node2D"]
+position = Vector2(2, -791)
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="UI" parent="CanvasLayer" instance=ExtResource("6_07am2")]
+offset_top = -1.0
+offset_bottom = -1.0
+
+[node name="TutorialText" type="Control" parent="CanvasLayer"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = SubResource("GDScript_b38ym")
+
+[node name="RichTextLabel" type="RichTextLabel" parent="CanvasLayer/TutorialText"]
+self_modulate = Color(0.996078, 0.862745, 0.803922, 1)
+z_index = 50
+layout_mode = 0
+offset_left = 11.0
+offset_top = 47.0
+offset_right = 301.0
+offset_bottom = 149.0
+text = "MOVE: WSAD / ARROWS
+THROW: SPACE / X
+BUY: E / Z
+RESTART: R / P"
+scroll_active = false
+
+[node name="RichTextLabel2" type="RichTextLabel" parent="CanvasLayer/TutorialText"]
+self_modulate = Color(0.99523, 0.863905, 0.803542, 1)
+layout_mode = 0
+offset_left = 15.0
+offset_top = 436.0
+offset_right = 569.0
+offset_bottom = 545.0
+text = "TO DO:
+> FIX  PORTALS  WITH  MAGIC SHELLS 
+> SELL PORTAL ICE CREAM
+> PROFIT !!!! "
+scroll_active = false
+
+[node name="MobileControls" parent="CanvasLayer" instance=ExtResource("2_gatyx")]
+visible = false
+
+[node name="PauseMenu" parent="CanvasLayer" instance=ExtResource("3_75eul")]
+
+[node name="Grass" type="Sprite2D" parent="."]
+z_index = -20
+position = Vector2(478, 271)
+texture = ExtResource("2_b38ym")
+metadata/_edit_lock_ = true
+
+[node name="Cutlet" parent="." instance=ExtResource("1_7ubgg")]
+position = Vector2(263, 198)
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(474, 272)
+
+[node name="walls" type="StaticBody2D" parent="."]
+collision_layer = 4
+collision_mask = 0
+collision_priority = 20.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="walls"]
+position = Vector2(513, 106)
+shape = SubResource("RectangleShape2D_8cmw5")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="walls"]
+position = Vector2(501, 542)
+shape = SubResource("RectangleShape2D_8cmw5")
+
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="walls"]
+position = Vector2(50, 296)
+rotation = 1.5708
+shape = SubResource("RectangleShape2D_g210m")
+
+[node name="CollisionShape2D4" type="CollisionShape2D" parent="walls"]
+position = Vector2(916, 286)
+rotation = 1.5708
+shape = SubResource("RectangleShape2D_g210m")
+
+[node name="PortalSpawnArea" parent="." instance=ExtResource("6_0jm75")]
+position = Vector2(120, 133)
+
+[node name="Marker2D" type="Marker2D" parent="PortalSpawnArea"]
+position = Vector2(758, 319)
+
+[node name="Counter" parent="." instance=ExtResource("5_g210m")]
+position = Vector2(477, 120)
+collision_layer = 256
+
+[node name="Tutorial" type="Node2D" parent="."]
+position = Vector2(593.524, -684.286)
+
+[node name="GroundPotion" type="Node2D" parent="Tutorial"]
+position = Vector2(-113.952, 232.428)
+
+[node name="Potion" parent="Tutorial/GroundPotion" instance=ExtResource("2_8cmw5")]
+position = Vector2(-309.571, 715.857)
+
+[node name="Potion2" parent="Tutorial/GroundPotion" instance=ExtResource("2_8cmw5")]
+position = Vector2(7.42856, 839.857)
+
+[node name="Potion4" parent="Tutorial/GroundPotion" instance=ExtResource("2_8cmw5")]
+position = Vector2(-160.571, 797.857)
+
+[node name="Potion5" parent="Tutorial/GroundPotion" instance=ExtResource("2_8cmw5")]
+position = Vector2(186.429, 779.857)
+
+[node name="Potion6" parent="Tutorial/GroundPotion" instance=ExtResource("2_8cmw5")]
+position = Vector2(-308.571, 833.857)
+
+[node name="Potion7" parent="Tutorial/GroundPotion" instance=ExtResource("2_8cmw5")]
+position = Vector2(287.429, 843.857)
+
+[node name="Potion3" parent="Tutorial/GroundPotion" instance=ExtResource("2_8cmw5")]
+position = Vector2(283.429, 725.857)
+
+[node name="PortalBigshot" parent="Tutorial" instance=ExtResource("9_uq68o")]
+position = Vector2(-121.524, 957.286)
+
+[node name="FactoryBuy2" parent="Tutorial" instance=ExtResource("5_uq68o")]
+position = Vector2(229.476, 1189.29)
+prices = Array[int]([20])
+
+[node name="EnabledOnStart" type="Node2D" parent="."]
+position = Vector2(477.2, -360.2)
+
+[node name="UpgradePortals" parent="EnabledOnStart" node_paths=PackedStringArray("upgrade_function") instance=ExtResource("7_0jm75")]
+position = Vector2(251.8, 505.2)
+prices = Array[int]([100, 150, 200])
+descriptions = Array[String](["Portals+", "Portals++", "Portals+++"])
+upgrade_function = NodePath("UpgradePortals")
+tiers = 3
+
+[node name="UpgradePortals" type="Node" parent="EnabledOnStart/UpgradePortals"]
+script = ExtResource("8_1dne3")
+big_portal_odds = Array[int]([65, 40, 45])
+small_portal_odds = Array[int]([35, 25, 25])
+laser_portal_odds = Array[int]([0, 35, 30])
+portal_spawn_rate = Array[float]([7.0, 5.5, 3.0])
+portal_cap = Array[int]([6, 8, 11])
+metadata/_custom_type_script = "uid://c73ox4rm40fnu"
+
+[node name="UpgradeDMG" parent="EnabledOnStart" node_paths=PackedStringArray("upgrade_function") instance=ExtResource("7_0jm75")]
+position = Vector2(-113.2, 862.2)
+prices = Array[int]([150, 150])
+descriptions = Array[String](["DMG+", "DMG++"])
+upgrade_function = NodePath("UpgradePotionDMG")
+tiers = 2
+
+[node name="UpgradePotionDMG" type="Node" parent="EnabledOnStart/UpgradeDMG"]
+script = ExtResource("6_bjkvw")
+metadata/_custom_type_script = "uid://neo2dv6y8b36"
+
+[node name="SplashZoneUpgrade" parent="EnabledOnStart" node_paths=PackedStringArray("upgrade_function") instance=ExtResource("7_0jm75")]
+position = Vector2(155.8, 864.2)
+prices = Array[int]([80, 150])
+descriptions = Array[String](["Splash+", "Splash++"])
+upgrade_function = NodePath("UpgradeSplashZone")
+tiers = 2
+
+[node name="UpgradeSplashZone" type="Node" parent="EnabledOnStart/SplashZoneUpgrade"]
+script = ExtResource("11_m2l5x")
+metadata/_custom_type_script = "uid://dw4ngb11xe7vo"
+
+[node name="UpgradeHolding" parent="EnabledOnStart" node_paths=PackedStringArray("upgrade_function") instance=ExtResource("7_0jm75")]
+position = Vector2(26.8, 861.2)
+prices = Array[int]([100, 100, 150])
+descriptions = Array[String](["Carrying+", "Carrying++", "Carrying+++"])
+upgrade_function = NodePath("UpgradeHolding")
+tiers = 3
+
+[node name="UpgradeHolding" type="Node" parent="EnabledOnStart/UpgradeHolding"]
+script = ExtResource("8_ew6bg")
+holding_levels = Array[int]([5, 9, 15])
+metadata/_custom_type_script = "uid://2odxxaqxl0cp"
+
+[node name="FactoryBuy" parent="EnabledOnStart" instance=ExtResource("5_uq68o")]
+position = Vector2(-289.2, 860.2)
+prices = Array[int]([50])
+
+[node name="OnStartEnable" type="Node" parent="EnabledOnStart" node_paths=PackedStringArray("game_start_nodes")]
+script = ExtResource("6_rko33")
+game_start_nodes = [NodePath("../FactoryBuy"), NodePath("../UpgradeHolding"), NodePath("../SplashZoneUpgrade"), NodePath("../UpgradeDMG"), NodePath("../UpgradePortals")]
+metadata/_custom_type_script = "uid://cj2kpp0gdjjry"
+
+[node name="Trees" type="Sprite2D" parent="."]
+z_index = 20
+position = Vector2(478, 271)
+texture = ExtResource("15_gatyx")
+metadata/_edit_lock_ = true

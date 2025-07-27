@@ -1,0 +1,11 @@
+[gd_scene load_steps=4 format=3 uid="uid://dnbq6361ofrh7"]
+
+[ext_resource type="PackedScene" uid="uid://c8j2xekbny1a3" path="res://scenes/prefabs/head_potion.tscn" id="1_omf1b"]
+[ext_resource type="Texture2D" uid="uid://b7e8hw7t3et5b" path="res://assets/Art/Ice_cream.png" id="2_t3b01"]
+[ext_resource type="Script" uid="uid://cs88wewwnx254" path="res://scripts/head_icecream.gd" id="2_tv540"]
+
+[node name="HeadIcecream" instance=ExtResource("1_omf1b")]
+texture = ExtResource("2_t3b01")
+hframes = 3
+frame = 1
+script = ExtResource("2_tv540")

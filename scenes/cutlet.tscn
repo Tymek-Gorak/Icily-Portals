@@ -1,0 +1,189 @@
+[gd_scene load_steps=18 format=3 uid="uid://da3evvysmba11"]
+
+[ext_resource type="Script" uid="uid://sxf4o33blolo" path="res://scripts/cutlet.gd" id="1_j3cmp"]
+[ext_resource type="PackedScene" uid="uid://c8j2xekbny1a3" path="res://scenes/prefabs/head_potion.tscn" id="2_1i3rk"]
+[ext_resource type="Texture2D" uid="uid://dviq6idav8wyp" path="res://assets/Art/Cutlet_model.png" id="3_4ymhs"]
+[ext_resource type="PackedScene" uid="uid://dnbq6361ofrh7" path="res://scenes/prefabs/head_icecream.tscn" id="3_dq1g6"]
+[ext_resource type="PackedScene" uid="uid://ccqytxl06s67i" path="res://scenes/prefabs/thrown_potion.tscn" id="3_gso4m"]
+[ext_resource type="PackedScene" uid="uid://d1w1it07krngx" path="res://scenes/prefabs/thrown_icecream.tscn" id="5_le58v"]
+[ext_resource type="Texture2D" uid="uid://d1kj1g0w3hag8" path="res://assets/Art/scope.png" id="7_le58v"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_776tf"]
+size = Vector2(32, 18)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_le58v"]
+radius = 9.05539
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_le58v"]
+radius = 13.0
+height = 42.0
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_le58v"]
+size = Vector2(2, 2)
+
+[sub_resource type="Animation" id="Animation_4jjii"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [4]
+}
+
+[sub_resource type="Animation" id="Animation_mxqan"]
+resource_name = "idle_backwards"
+length = 0.4
+loop_mode = 1
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [8, 9]
+}
+
+[sub_resource type="Animation" id="Animation_ognsf"]
+resource_name = "idle_forward"
+length = 0.4
+loop_mode = 1
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [0, 1]
+}
+
+[sub_resource type="Animation" id="Animation_osp5u"]
+resource_name = "walk_backwards"
+length = 0.4
+loop_mode = 1
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [12, 13, 14, 15]
+}
+
+[sub_resource type="Animation" id="Animation_le58v"]
+resource_name = "walk_forward"
+length = 0.4
+loop_mode = 1
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [4, 5, 6, 7]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_4jjii"]
+_data = {
+&"RESET": SubResource("Animation_4jjii"),
+&"idle_backwards": SubResource("Animation_mxqan"),
+&"idle_forward": SubResource("Animation_ognsf"),
+&"walk_backwards": SubResource("Animation_osp5u"),
+&"walk_forward": SubResource("Animation_le58v")
+}
+
+[node name="Cutlet" type="CharacterBody2D" node_paths=PackedStringArray("head_container")]
+z_index = 10
+collision_mask = 12
+motion_mode = 1
+script = ExtResource("1_j3cmp")
+head_potion_spacing = 15
+POTION_RANGE = 150
+head_potion = ExtResource("2_1i3rk")
+head_icecream = ExtResource("3_dq1g6")
+thrown_potion = ExtResource("3_gso4m")
+thrown_icecream = ExtResource("5_le58v")
+head_container = NodePath("HeadContainer")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("3_4ymhs")
+hframes = 4
+vframes = 4
+frame = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 2)
+shape = SubResource("RectangleShape2D_776tf")
+
+[node name="HeadContainer" type="Node2D" parent="."]
+position = Vector2(0, -14)
+
+[node name="SplashZone" type="Sprite2D" parent="."]
+position = Vector2(224, 9.53674e-07)
+texture = ExtResource("7_le58v")
+
+[node name="HurtBox" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HurtBox"]
+shape = SubResource("CircleShape2D_le58v")
+
+[node name="BuyArea" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 128
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="BuyArea"]
+rotation = 1.57079
+shape = SubResource("CapsuleShape2D_le58v")
+debug_color = Color(0.557769, 0.556987, 0.187842, 0.42)
+
+[node name="IFrames" type="Timer" parent="."]
+wait_time = 2.0
+one_shot = true
+
+[node name="ThrowFrequency" type="Timer" parent="."]
+wait_time = 0.2
+
+[node name="SellArea" type="Area2D" parent="."]
+unique_name_in_owner = true
+collision_layer = 0
+collision_mask = 256
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="SellArea"]
+shape = SubResource("RectangleShape2D_le58v")
+debug_color = Color(0.692977, 0.80775, 0, 0.42)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_4jjii")
+}
+
+[connection signal="area_entered" from="HurtBox" to="." method="get_hit"]
+[connection signal="timeout" from="ThrowFrequency" to="." method="throw"]
+[connection signal="area_entered" from="SellArea" to="." method="sell_head_ice_cream"]

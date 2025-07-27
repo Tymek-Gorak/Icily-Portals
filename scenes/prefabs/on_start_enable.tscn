@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://08m6omvbfcex"]
+
+[ext_resource type="Script" uid="uid://cj2kpp0gdjjry" path="res://scripts/on_start_enable.gd" id="1_e7h6u"]
+
+[node name="OnStartEnable" type="Node"]
+script = ExtResource("1_e7h6u")

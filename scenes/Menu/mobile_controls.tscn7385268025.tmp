@@ -1,0 +1,188 @@
+[gd_scene load_steps=18 format=3 uid="uid://bexao40mnhs1w"]
+
+[ext_resource type="Script" uid="uid://cxjfw55fvobi1" path="res://scenes/Menu/Scripts/mobile_controls.gd" id="1_hdewx"]
+[ext_resource type="Texture2D" uid="uid://bhrdv6codvf8o" path="res://assets/Art/Joystick.png" id="1_t277f"]
+[ext_resource type="PackedScene" uid="uid://djovqwiq6mry8" path="res://scenes/Menu/joystick_movement.tscn" id="2_hhu1t"]
+[ext_resource type="Script" uid="uid://bia0vsu77ejxd" path="res://scenes/Menu/Scripts/throw_touch_screen_button.gd" id="4_e7dm4"]
+[ext_resource type="Texture2D" uid="uid://bnsxxq32m38y5" path="res://assets/Art/player_action_buttons.png" id="4_g8lda"]
+[ext_resource type="Script" uid="uid://b5sfeh1lvxydq" path="res://scenes/Menu/Scripts/joystick_action.gd" id="4_hhu1t"]
+[ext_resource type="Script" uid="uid://b6f7kfrfd2yqs" path="res://scenes/Menu/Scripts/buy_touch_screen_button.gd" id="6_wecqg"]
+[ext_resource type="Script" uid="uid://dpqgtdif2wbo6" path="res://scenes/Menu/Scripts/restart_touch_screen_button.gd" id="7_ct8eh"]
+[ext_resource type="Script" uid="uid://dwktj6gg3mddq" path="res://scenes/Menu/Scripts/fake_joystick.gd" id="9_c0m31"]
+[ext_resource type="Texture2D" uid="uid://bps8r51jxanho" path="res://assets/Art/dad5.png" id="10_pp7hp"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_c0m31"]
+atlas = ExtResource("4_g8lda")
+region = Rect2(70, 454, 52, 60)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pp7hp"]
+atlas = ExtResource("4_g8lda")
+region = Rect2(262, 454, 52, 60)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_t277f"]
+atlas = ExtResource("1_t277f")
+region = Rect2(30, 30, 132, 132)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wecqg"]
+atlas = ExtResource("4_g8lda")
+region = Rect2(70, 262, 52, 60)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ct8eh"]
+atlas = ExtResource("4_g8lda")
+region = Rect2(262, 262, 52, 60)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_g8lda"]
+atlas = ExtResource("4_g8lda")
+region = Rect2(70, 70, 52, 60)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hhu1t"]
+atlas = ExtResource("4_g8lda")
+region = Rect2(262, 70, 52, 60)
+
+[node name="MobileControls" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_hdewx")
+
+[node name="RestartTouchScreenButton" type="TouchScreenButton" parent="."]
+position = Vector2(875, 61)
+scale = Vector2(1.2, 1.2)
+texture_normal = SubResource("AtlasTexture_c0m31")
+texture_pressed = SubResource("AtlasTexture_pp7hp")
+script = ExtResource("7_ct8eh")
+
+[node name="TwoHandedRighty" type="Control" parent="."]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="JoystickMovement" parent="TwoHandedRighty" instance=ExtResource("2_hhu1t")]
+position = Vector2(29, 358.999)
+
+[node name="JoystickAction" type="TouchScreenButton" parent="TwoHandedRighty"]
+self_modulate = Color(1, 0, 0.372549, 1)
+position = Vector2(786, 358.999)
+scale = Vector2(1.2, 1.2)
+texture_normal = SubResource("AtlasTexture_t277f")
+script = ExtResource("4_hhu1t")
+
+[node name="InnerCircle" type="Sprite2D" parent="TwoHandedRighty/JoystickAction"]
+self_modulate = Color(1, 1, 0, 1)
+position = Vector2(66, 66)
+scale = Vector2(0.85, 0.85)
+texture = ExtResource("1_t277f")
+region_enabled = true
+region_rect = Rect2(30, 30, 132, 132)
+
+[node name="ActionPip" type="Sprite2D" parent="TwoHandedRighty/JoystickAction"]
+unique_name_in_owner = true
+position = Vector2(66, 66)
+texture = ExtResource("4_g8lda")
+region_enabled = true
+region_rect = Rect2(262, 268, 52, 54)
+
+[node name="ThrowTouchScreenButton" type="TouchScreenButton" parent="TwoHandedRighty"]
+visible = false
+position = Vector2(848, 429)
+scale = Vector2(1.5, 1.5)
+texture_normal = SubResource("AtlasTexture_wecqg")
+texture_pressed = SubResource("AtlasTexture_ct8eh")
+script = ExtResource("4_e7dm4")
+
+[node name="BuyTouchScreenButton" type="TouchScreenButton" parent="TwoHandedRighty"]
+position = Vector2(884, 251)
+scale = Vector2(1.2, 1.2)
+texture_normal = SubResource("AtlasTexture_g8lda")
+texture_pressed = SubResource("AtlasTexture_hhu1t")
+script = ExtResource("6_wecqg")
+
+[node name="TwoHandedLefty" type="Control" parent="."]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="JoystickMovement" parent="TwoHandedLefty" instance=ExtResource("2_hhu1t")]
+position = Vector2(785, 361)
+
+[node name="JoystickAction" type="TouchScreenButton" parent="TwoHandedLefty"]
+self_modulate = Color(1, 0, 0.372549, 1)
+position = Vector2(28.0001, 353)
+scale = Vector2(1.2, 1.2)
+texture_normal = SubResource("AtlasTexture_t277f")
+script = ExtResource("4_hhu1t")
+
+[node name="InnerCircle" type="Sprite2D" parent="TwoHandedLefty/JoystickAction"]
+self_modulate = Color(1, 1, 0, 1)
+position = Vector2(66, 66)
+scale = Vector2(0.85, 0.85)
+texture = ExtResource("1_t277f")
+region_enabled = true
+region_rect = Rect2(30, 30, 132, 132)
+
+[node name="ActionPip" type="Sprite2D" parent="TwoHandedLefty/JoystickAction"]
+position = Vector2(66, 66)
+texture = ExtResource("4_g8lda")
+region_enabled = true
+region_rect = Rect2(262, 268, 52, 54)
+
+[node name="ThrowTouchScreenButton" type="TouchScreenButton" parent="TwoHandedLefty"]
+visible = false
+position = Vector2(848, 429)
+scale = Vector2(1.5, 1.5)
+texture_normal = SubResource("AtlasTexture_wecqg")
+texture_pressed = SubResource("AtlasTexture_ct8eh")
+script = ExtResource("4_e7dm4")
+
+[node name="BuyTouchScreenButton" type="TouchScreenButton" parent="TwoHandedLefty"]
+position = Vector2(25, 267)
+scale = Vector2(1.2, 1.2)
+texture_normal = SubResource("AtlasTexture_g8lda")
+texture_pressed = SubResource("AtlasTexture_hhu1t")
+script = ExtResource("6_wecqg")
+
+[node name="OneHanded" type="Control" parent="."]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="JoystickMovement" parent="OneHanded" instance=ExtResource("2_hhu1t")]
+position = Vector2(30, 354)
+is_one_handed = true
+
+[node name="FakeJoystick" type="Sprite2D" parent="OneHanded"]
+position = Vector2(864, 439)
+texture = ExtResource("1_t277f")
+region_enabled = true
+region_rect = Rect2(29, 30, 133, 132)
+script = ExtResource("9_c0m31")
+
+[node name="Pip" type="Sprite2D" parent="OneHanded/FakeJoystick"]
+texture = ExtResource("1_t277f")
+region_enabled = true
+region_rect = Rect2(262, 70, 52, 52)
+
+[node name="NinePatchRect" type="NinePatchRect" parent="."]
+self_modulate = Color(1, 1, 1, 0.0705882)
+layout_mode = 0
+offset_right = 960.0
+offset_bottom = 542.0
+texture = ExtResource("10_pp7hp")
+
+[connection signal="released" from="TwoHandedRighty/JoystickAction" to="TwoHandedRighty/JoystickAction" method="_on_released"]
+[connection signal="released" from="TwoHandedLefty/JoystickAction" to="TwoHandedLefty/JoystickAction" method="_on_released"]

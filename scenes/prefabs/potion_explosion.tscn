@@ -1,0 +1,95 @@
+[gd_scene load_steps=12 format=3 uid="uid://d0oa6vsx6l6ak"]
+
+[ext_resource type="Script" uid="uid://b6i0xgxi6couq" path="res://scripts/potion_explosion.gd" id="1_j6nvk"]
+[ext_resource type="Texture2D" uid="uid://dxvr6kt5md4k2" path="res://assets/Art/Spike_shell_bomba.png" id="3_7rlpw"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5j7b4"]
+atlas = ExtResource("3_7rlpw")
+region = Rect2(0, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_40krt"]
+atlas = ExtResource("3_7rlpw")
+region = Rect2(48, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_oucy0"]
+atlas = ExtResource("3_7rlpw")
+region = Rect2(96, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_e3fh2"]
+atlas = ExtResource("3_7rlpw")
+region = Rect2(144, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_sohrk"]
+atlas = ExtResource("3_7rlpw")
+region = Rect2(192, 0, 48, 48)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_h66p7"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5j7b4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_40krt")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_oucy0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_e3fh2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_sohrk")
+}],
+"loop": false,
+"name": &"explode",
+"speed": 10.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_ljh36"]
+radius = 58.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_j6nvk"]
+radius = 92.0054
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_7rlpw"]
+radius = 131.015
+
+[node name="PotionExplosion" type="Area2D"]
+collision_layer = 32
+collision_mask = 16
+script = ExtResource("1_j6nvk")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+visible = false
+scale = Vector2(1.83333, 1.83333)
+sprite_frames = SubResource("SpriteFrames_h66p7")
+animation = &"explode"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+rotation = 1.5708
+shape = SubResource("CircleShape2D_ljh36")
+disabled = true
+
+[node name="AnimatedSprite2D2" type="AnimatedSprite2D" parent="."]
+visible = false
+scale = Vector2(2.875, 2.875)
+sprite_frames = SubResource("SpriteFrames_h66p7")
+animation = &"explode"
+frame_progress = 0.461149
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_j6nvk")
+disabled = true
+
+[node name="AnimatedSprite2D3" type="AnimatedSprite2D" parent="."]
+visible = false
+scale = Vector2(4.66667, 4.66667)
+sprite_frames = SubResource("SpriteFrames_h66p7")
+animation = &"explode"
+
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_7rlpw")
+disabled = true
+
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]
