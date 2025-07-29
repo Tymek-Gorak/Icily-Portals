@@ -1,7 +1,6 @@
 extends Control
 class_name PauseMenu
 
-
 const MENU = "res://scenes/Menu/menu.tscn"
 
 @onready var camera : Camera2D = get_viewport().get_camera_2d()
@@ -37,10 +36,10 @@ func pause():
 		return
 	get_tree().paused = true
 	pause_button.on_pause()
-	pause_button
 	menu.visible = true
 	AudioManager.clear_audio(AudioResource.AUDIO_TYPES.CLOCK_TICKING)
 	AudioServer.set_bus_effect_enabled(0,0,true)
+
 	var tween = create_tween().set_trans(Tween.TRANS_ELASTIC).set_ease(Tween.EASE_OUT)
 	tween.tween_property(camera, ^"zoom", Vector2.ONE * .86, 0.4)
 
@@ -54,6 +53,7 @@ func resume():
 	if GameManager.game_started:
 		AudioManager.play_global_audio(AudioResource.AUDIO_TYPES.CLOCK_TICKING)
 	AudioServer.set_bus_effect_enabled(0,0,false)
+
 	var tween = create_tween().set_trans(Tween.TRANS_ELASTIC).set_ease(Tween.EASE_OUT)
 	tween.tween_property(camera, ^"zoom", Vector2.ONE, 0.4)
 

@@ -28,10 +28,10 @@ gdscript/warnings/integer_division=0
 
 [display]
 
-window/size/viewport_width=960
+window/size/viewport_width=1020
 window/size/viewport_height=540
-window/size/window_width_override=1152
-window/size/window_height_override=648
+window/size/window_width_override=1020
+window/size/window_height_override=540
 window/stretch/mode="viewport"
 window/stretch/aspect="keep_width"
 
@@ -47,10 +47,12 @@ folder_colors={
 [global_group]
 
 Portals="Spawnable portals that create a danger to the player"
+MainCanvasLayer=""
 
 [gui]
 
 theme/custom_font="uid://cmxl2jbsqfukn"
+theme/default_font_multichannel_signed_distance_field=true
 
 [input]
 
