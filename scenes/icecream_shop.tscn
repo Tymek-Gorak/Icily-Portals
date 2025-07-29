@@ -34,7 +34,7 @@ size = Vector2(630, 20)
 [node name="IcecreamShop" type="Node2D"]
 position = Vector2(2, -791)
 
-[node name="CanvasLayer" type="CanvasLayer" parent="."]
+[node name="CanvasLayer" type="CanvasLayer" parent="." groups=["MainCanvasLayer"]]
 
 [node name="UI" parent="CanvasLayer" instance=ExtResource("6_07am2")]
 offset_top = -1.0
@@ -78,6 +78,7 @@ scroll_active = false
 visible = false
 
 [node name="PauseMenu" parent="CanvasLayer" instance=ExtResource("3_75eul")]
+visible = false
 
 [node name="Grass" type="Sprite2D" parent="."]
 z_index = -20

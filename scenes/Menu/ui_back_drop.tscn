@@ -1,0 +1,194 @@
+[gd_scene load_steps=13 format=3 uid="uid://cqus0uxsjrxc5"]
+
+[ext_resource type="Script" uid="uid://cv116ye7jhwtm" path="res://scenes/Menu/Scripts/ui_back_drop.gd" id="1_d3s7d"]
+[ext_resource type="Texture2D" uid="uid://bhmtidxeq5uxf" path="res://assets/Art/BG.png" id="1_efyit"]
+[ext_resource type="Shader" uid="uid://drs3utncquixb" path="res://assets/Shaders/ui_back_drop_cover.gdshader" id="3_d3s7d"]
+[ext_resource type="Texture2D" uid="uid://qwgjgk5m5rl1" path="res://assets/Art/buttons.png" id="4_myvt7"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_myvt7"]
+shader = ExtResource("3_d3s7d")
+shader_parameter/cut_off_y = 1.0
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ce7go"]
+atlas = ExtResource("1_efyit")
+region = Rect2(445, 95, 62, 10)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kkbgs"]
+atlas = ExtResource("4_myvt7")
+region = Rect2(116, 11, 48, 33)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_csihv"]
+atlas = ExtResource("4_myvt7")
+region = Rect2(174, 11, 48, 33)
+
+[sub_resource type="Animation" id="Animation_d3s7d"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("VBoxContainer/NinePatchRect/UICover:material:shader_parameter/cut_off_y")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [1.0]
+}
+tracks/1/type = "bezier"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:position:x")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(370, -0.1, 0, 0.1, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/2/type = "bezier"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".:position:y")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(31, -0.1, 0, 0.1, 0),
+"times": PackedFloat32Array(0)
+}
+
+[sub_resource type="Animation" id="Animation_myvt7"]
+resource_name = "back_drop_despawn"
+length = 0.4
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position:x")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(0, 0),
+"points": PackedFloat32Array(370, 0, 0, 0, 0, 370, -0.1, 0, 0.1, 0),
+"times": PackedFloat32Array(0, 0.4)
+}
+tracks/1/type = "bezier"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:position:y")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"handle_modes": PackedInt32Array(0, 0),
+"points": PackedFloat32Array(31, -0.1, 0, 0.166667, -170.547, 1025, -0.266667, -251.208, 0.1, 0),
+"times": PackedFloat32Array(0, 0.4)
+}
+
+[sub_resource type="Animation" id="Animation_ce7go"]
+resource_name = "close_menu"
+length = 0.3
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("VBoxContainer/NinePatchRect/UICover:material:shader_parameter/cut_off_y")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [1.0, 0.21]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_myvt7"]
+_data = {
+&"RESET": SubResource("Animation_d3s7d"),
+&"back_drop_despawn": SubResource("Animation_myvt7"),
+&"close_menu": SubResource("Animation_ce7go")
+}
+
+[node name="UIBackDrop" type="PanelContainer" groups=["UIBackDrop"]]
+self_modulate = Color(1, 1, 1, 0)
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -140.0
+offset_top = -239.0
+offset_right = 140.0
+offset_bottom = 225.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+script = ExtResource("1_d3s7d")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+self_modulate = Color(1, 1, 1, 0)
+layout_mode = 2
+theme_override_constants/separation = 40
+
+[node name="NinePatchRect" type="NinePatchRect" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+texture = ExtResource("1_efyit")
+region_rect = Rect2(381, 12, 197, 423)
+patch_margin_left = 31
+patch_margin_top = 109
+patch_margin_right = 23
+patch_margin_bottom = 12
+
+[node name="MenuBox" type="MarginContainer" parent="VBoxContainer/NinePatchRect"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 85
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 15
+
+[node name="Button" type="Button" parent="VBoxContainer/NinePatchRect/MenuBox"]
+use_parent_material = true
+layout_mode = 2
+
+[node name="UICover" type="TextureRect" parent="VBoxContainer/NinePatchRect"]
+material = SubResource("ShaderMaterial_myvt7")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("AtlasTexture_ce7go")
+
+[node name="Control" type="Control" parent="VBoxContainer"]
+layout_mode = 2
+
+[node name="QuitButton" type="TextureButton" parent="VBoxContainer/Control"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -24.0
+offset_top = -20.0
+offset_right = 24.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+texture_normal = SubResource("AtlasTexture_kkbgs")
+texture_pressed = SubResource("AtlasTexture_csihv")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+unique_name_in_owner = true
+libraries = {
+&"": SubResource("AnimationLibrary_myvt7")
+}
+
+[connection signal="button_up" from="VBoxContainer/Control/QuitButton" to="." method="_on_quit_button_button_up"]
